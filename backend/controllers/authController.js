@@ -98,7 +98,7 @@ if(userAllEntries.length>1){
   user=userAllEntries[0];
 }
 
-if (user.verificationCode !== Number(code)) {
+if (user.verificationCode !== Number(otp)) {
   return next(new ErrorHandler('Invalid verification code', 400));
 }
 
@@ -115,7 +115,7 @@ await user.save({validateModifiedOnly: true});
 await sendToken(user, 200, "Account Verified.", res);
 
 } catch (error) {
- 
+//  console.error(error);
   res.status(500).json({
     message:"Internal Server error"
   })
