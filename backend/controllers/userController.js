@@ -28,7 +28,7 @@ export const registerNewAdmin=catchAsyncErrors(async (req, res, next)=>{
         return next(new ErrorHandler("Please enter all field",400));
     const isRegistered=await findUserByEmail(email);
     if(isRegistered)
-        return next(new ErrorHandler("User is already registered",400));
+        return next(new ErrorHandler("Email is already taken",400));
     if(password.length <8 || password.length >16)
         return next(new ErrorHandler("Password length should be between 8 and 16",400));
     const avatar = req?.files?.avatar;
